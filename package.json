@@ -1,8 +1,8 @@
 {
-  "name": "project-name",
+  "name": "Levi-crud",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Crud of Levi",
+  "author": "Levi",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
