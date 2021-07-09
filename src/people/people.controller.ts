@@ -9,14 +9,14 @@ import {
    Put,
 } from '@nestjs/common';
 import { PersonService } from './shared/person.service';
-import { Person } from './shared/person';
+import { PersonDto } from './dto/create-person.dto'; 
 import { ApiBody, ApiCreatedResponse, ApiResponse } from '@nestjs/swagger'
 import { PersonRegister, PersonList, PersonUpdate } from '../swagger/entities/person.entitie'
 
 @Controller('people')
 export class PeopleController {
    constructor(private personService: PersonService) { }
-
+/*
    @Get()
    @ApiCreatedResponse({
       status: 200,
@@ -36,17 +36,17 @@ export class PeopleController {
    async getById(@Param('id') id: number): Promise<Person> {
       return this.personService.getById(id);
    }
-
+*/
    @Post()
    @ApiCreatedResponse({
       status: 200,
       description: 'user registration'
    })
    @ApiBody({ type: PersonRegister })
-   async create(@Body() person: Person): Promise<Person> {
-      return this.personService.create(person);
+   async create(@Body() personDto: PersonDto): Promise<PersonDto> {
+      return this.personService.create(personDto);
    }
-
+/*
    @Put(':id')
    @ApiBody({ type: PersonUpdate })
    async update(
@@ -65,4 +65,5 @@ export class PeopleController {
    async delete(@Param('id') id: number) {
       this.personService.delete(id);
    }
+   */
 }

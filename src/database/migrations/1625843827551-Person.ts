@@ -19,7 +19,7 @@ export class Person1625843827551 implements MigrationInterface {
                     },
                     {
                         name: 'cpf',
-                        type: 'int',
+                        type: 'varchar',
                     },
                 ],
             }),
