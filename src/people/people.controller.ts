@@ -33,7 +33,7 @@ export class PeopleController {
       description: 'user unique'
    })
    @ApiResponse({ type: PersonList })
-   async getById(@Param('id') id: number): Promise<Person> {
+   async getById(@Param('id') id: number): Promise<Person[]> {
       return this.personService.getById(id);
    }
 
@@ -53,7 +53,7 @@ export class PeopleController {
       @Param('id') id: number,
       @Body() person: Person,
    ): Promise<Person> {
-      person.id = id;
+      person.id = id
       return this.personService.update(person);
    }
 
