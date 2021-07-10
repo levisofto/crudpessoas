@@ -12,6 +12,9 @@ import { PersonService } from './shared/person.service';
 import { Person } from './shared/person';
 import { ApiBody, ApiCreatedResponse, ApiResponse } from '@nestjs/swagger'
 import { PersonRegister, PersonList, PersonUpdate } from '../swagger/entities/person.entitie'
+import { ListPersonDto } from './dto/list-user.dto';
+import { CreatePersonDto } from './dto/create-person.dto';
+import { UpdatePersonDto } from './dto/update-person.dto';
 
 @Controller('people')
 export class PeopleController {
@@ -23,7 +26,7 @@ export class PeopleController {
       description: 'user list'
    })
    @ApiResponse({ type: [PersonList] })
-   async getAll(): Promise<Person[]> {
+   async getAll(): Promise<ListPersonDto[]> {
       return this.personService.getAll();
    }
 
@@ -33,7 +36,7 @@ export class PeopleController {
       description: 'user unique'
    })
    @ApiResponse({ type: PersonList })
-   async getById(@Param('id') id: number): Promise<Person[]> {
+   async getById(@Param('id') id: number): Promise<ListPersonDto[]> {
       return this.personService.getById(id);
    }
 
@@ -43,7 +46,7 @@ export class PeopleController {
       description: 'user registration'
    })
    @ApiBody({ type: PersonRegister })
-   async create(@Body() person: Person): Promise<Person> {
+   async create(@Body() person: Person): Promise<CreatePersonDto> {
       return this.personService.create(person);
    }
 
@@ -52,7 +55,7 @@ export class PeopleController {
    async update(
       @Param('id') id: number,
       @Body() person: Person,
-   ): Promise<Person> {
+   ): Promise<UpdatePersonDto> {
       person.id = id
       return this.personService.update(person);
    }
