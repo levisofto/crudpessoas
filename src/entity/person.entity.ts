@@ -5,9 +5,9 @@ export class Person {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   nome: string;
 
-  @Column()
+  @Column({ unique: true })
   cpf: string;
 }
