@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  xtree_app:
+    container_name: xtree_app
+    build: .
+    tty: true
+    ports:
+      - 3333:3333
+      - 7001:7001
+    networks:
+      - app-network
+    volumes:
+      - .:/home/node/app
+
+  xtree_postgres:
+    container_name: xtree_postgres
+    image: postgres
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - 5432:5432
+    networks:
+      - app-network
+    volumes:
+      - ./.docker/pgdata:/var/lib/postgresql
+
+  xtree_mongo:
+    container_name: xtree_mongo
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
+    ports:
+      - 27017:27017
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
