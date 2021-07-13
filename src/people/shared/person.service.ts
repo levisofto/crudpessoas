@@ -17,11 +17,7 @@ export class PersonService {
     }
 
     getById(id: number) {
-        const person = this.personRepository.find({
-            where: {
-                id,
-            },
-        });
+        const person = this.personRepository.findOne(id);
         return person;
     }
 
@@ -33,7 +29,7 @@ export class PersonService {
     }
 
     async update(person: UpdatePersonDto) {
-        const [personArray] = await this.getById(person.id);
+        const personArray = await this.getById(person.id);
         personArray.nome = person.nome === undefined ? personArray.nome : person.nome
         personArray.cpf = person.cpf === undefined ? personArray.cpf : person.cpf
         this.personRepository.save(personArray);

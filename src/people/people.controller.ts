@@ -36,7 +36,7 @@ export class PeopleController {
       description: 'user unique'
    })
    @ApiResponse({ type: PersonList })
-   async getById(@Param('id') id: number): Promise<ListPersonDto[]> {
+   async getById(@Param('id') id: number): Promise<ListPersonDto> {
       return this.personService.getById(id);
    }
 
