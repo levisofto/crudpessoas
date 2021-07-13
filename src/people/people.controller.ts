@@ -46,7 +46,7 @@ export class PeopleController {
       description: 'user registration'
    })
    @ApiBody({ type: PersonRegister })
-   async create(@Body() person: CreatePersonDto): Promise<CreatePersonDto> {
+   async create(@Body() person: CreatePersonDto): Promise<any> {
       return this.personService.create(person);
    }
 
@@ -55,7 +55,7 @@ export class PeopleController {
    async update(
       @Param('id') id: number,
       @Body() person: UpdatePersonDto,
-   ): Promise<UpdatePersonDto> {
+   ): Promise<any> {
       person.id = id
       return this.personService.update(person);
    }

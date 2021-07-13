@@ -21,19 +21,33 @@ export class PersonService {
         return person;
     }
 
-    create(person: CreatePersonDto) {
-        const response = this.personRepository.create(person);
-        this.personRepository.save(response);
+    async create(person: CreatePersonDto) {
+      try {
+          const response = this.personRepository.create(person);
+          await this.personRepository.save(response)
 
-        return response;
+          return response;
+        } catch (error) {
+          return {
+            code: error.code,
+            error: error.message
+          }
+        }
     }
 
     async update(person: UpdatePersonDto) {
+      try {
         const personArray = await this.getById(person.id);
         personArray.nome = person.nome === undefined ? personArray.nome : person.nome
         personArray.cpf = person.cpf === undefined ? personArray.cpf : person.cpf
         this.personRepository.save(personArray);
         return personArray;
+      } catch (error) {
+        return {
+          code: error.code,
+          error: error.message
+        }
+      }
     }
 
     async delete(id: number) {
