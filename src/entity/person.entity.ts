@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Address } from './address.entity';
 
 @Entity('person')
 export class Person {
@@ -10,4 +11,7 @@ export class Person {
 
   @Column({ unique: true })
   cpf: string;
+
+  @OneToMany(() => Address, address => address.personId)
+  address: Address[];
 }
