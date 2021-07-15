@@ -1,4 +1,5 @@
-import { IsNotEmpty, Length, IsNumberString, IsString } from 'class-validator';
+import { IsNotEmpty, Length, IsNumberString, IsString, IsArray } from 'class-validator';
+import { Address } from '../../entity/address.entity';
 export class CreatePersonDto {
   @IsNotEmpty()
   @IsString()
@@ -8,4 +9,8 @@ export class CreatePersonDto {
   @IsNumberString()
   @Length(9, 11)
 	cpf: string;
+
+  @IsNotEmpty()
+  @IsArray()
+  address: Address[];
 }

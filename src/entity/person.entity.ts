@@ -12,6 +12,6 @@ export class Person {
   @Column({ unique: true })
   cpf: string;
 
-  @OneToMany(() => Address, address => address.personId)
+  @OneToMany(() => Address, address => address.personId, { cascade: ['insert', 'update'] })
   address: Address[];
 }
