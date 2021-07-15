@@ -40,6 +40,7 @@ export class PersonService {
         const personArray = await this.getById(person.id);
         personArray.nome = person.nome === undefined ? personArray.nome : person.nome
         personArray.cpf = person.cpf === undefined ? personArray.cpf : person.cpf
+        personArray.address = person.address === undefined ? personArray.address : person.address
         this.personRepository.save(personArray);
         return personArray;
       } catch (error) {
