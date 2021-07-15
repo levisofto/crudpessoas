@@ -7,7 +7,7 @@ export class CreatePersonDto {
 
   @IsNotEmpty()
   @IsNumberString()
-  @Length(9, 11)
+  @Length(11, 11)
 	cpf: string;
 
   @IsNotEmpty()

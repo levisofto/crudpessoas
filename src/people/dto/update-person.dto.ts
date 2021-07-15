@@ -8,6 +8,6 @@ export class UpdatePersonDto {
 
   @IsNotEmpty()
   @IsNumberString()
-  @Length(9, 11)
+  @Length(11, 11)
   cpf: string;
 }
