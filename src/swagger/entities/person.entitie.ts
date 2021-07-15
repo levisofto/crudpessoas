@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Address } from 'src/entity/address.entity';
 
 export class PersonRegister {
   @ApiProperty({ type: String, description: 'nome', example: 'Rafael Levi' })
@@ -6,6 +7,19 @@ export class PersonRegister {
 
   @ApiProperty({ type: Number, description: 'cpf', example: 12345678912 })
   cpf: string;
+
+  @ApiProperty({
+    type: Address,
+    description: 'Endereço',
+    example: {
+      "state": "Bahia",
+      "city": "Vitória da Conquista",
+      "neighborhood": "Felícia",
+      "street": "Rua I"
+    },
+    required: true,
+  })
+  Address: Address;
 }
 
 export class PersonList {
@@ -35,4 +49,18 @@ export class PersonUpdate {
     required: false,
   })
   cpf: string;
+
+  @ApiProperty({
+    type: Address,
+    description: 'Endereço',
+    example: {
+      "id": 1, 
+      "state": "Bahia",
+      "city": "Vitória da Conquista",
+      "neighborhood": "Felícia",
+      "street": "Rua I"
+    },
+    required: false,
+  })
+  Address: Address;
 }
