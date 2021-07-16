@@ -1,3 +1,5 @@
+import { Type } from 'class-transformer';
+import { ValidateNested } from 'class-validator';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Address } from './address.entity';
 
@@ -13,5 +15,7 @@ export class Person {
   cpf: string;
 
   @OneToMany(() => Address, address => address.person, { cascade: ['insert', 'update'] })
+  @ValidateNested()
+  @Type(() => Address)
   address: Address[];
 }

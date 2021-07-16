@@ -1,3 +1,5 @@
+import { Type } from 'class-transformer';
+import { ValidateNested } from 'class-validator';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Person } from './person.entity';
 
@@ -20,5 +22,7 @@ export class Address {
 
   @ManyToOne(() => Person)
   @JoinColumn()
+  @ValidateNested()
+  @Type(() => Person)
   person: Person;
 }
