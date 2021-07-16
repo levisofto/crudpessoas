@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Address } from 'src/entity/address.entity';
+import { Address } from '../../entity/address.entity';
 
 export class PersonRegister {
   @ApiProperty({ type: String, description: 'nome', example: 'Rafael Levi' })

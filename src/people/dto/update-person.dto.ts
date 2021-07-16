@@ -1,4 +1,5 @@
-import { IsNotEmpty, Length, IsNumberString, IsString, IsArray } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsNotEmpty, Length, IsNumberString, IsString, IsArray, ValidateNested } from 'class-validator';
 import { Address } from '../../entity/address.entity';
 
 export class UpdatePersonDto {
@@ -15,5 +16,7 @@ export class UpdatePersonDto {
 
   @IsNotEmpty()
   @IsArray()
+  @Type(() => Address)
+  @ValidateNested({ each: true })
   address: Address[];
 }

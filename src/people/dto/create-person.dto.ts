@@ -1,4 +1,5 @@
-import { IsNotEmpty, Length, IsNumberString, IsString, IsArray } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsNotEmpty, Length, IsNumberString, IsString, IsArray, ValidateNested } from 'class-validator';
 import { Address } from '../../entity/address.entity'; //To do: criar um dto com os atributos para devolver e colocar os validadores
 export class CreatePersonDto {
   @IsNotEmpty()
@@ -12,5 +13,7 @@ export class CreatePersonDto {
 
   @IsNotEmpty() //to do: usar   @Type(() => ...)
   @IsArray() //to do: usar o  @ValidateNested({ each: true })
+  @Type(() => Address)
+  @ValidateNested({ each: true })
   address: Address[];
 }
