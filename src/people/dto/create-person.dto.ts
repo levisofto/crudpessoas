@@ -11,8 +11,8 @@ export class CreatePersonDto {
   @Length(11, 11)
 	cpf: string;
 
-  @IsNotEmpty() //to do: usar   @Type(() => ...)
-  @IsArray() //to do: usar o  @ValidateNested({ each: true })
+  @IsNotEmpty() 
+  @IsArray() 
   @Type(() => Address)
   @ValidateNested({ each: true })
   address: Address[];
