@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PersonRepository } from '../person.repository';
 import { CreatePersonDto } from "../dto/create-person.dto";
@@ -27,33 +27,39 @@ export class PersonService {
     }
 
     async create(person: CreatePersonDto) {
-      try {
-          const response = this.personRepository.create(person);
-          await this.personRepository.save(response)
+      const response = this.personRepository.create(person);
+      
+      await this.personRepository
+        .save(response)
+        .catch((error) => {
+          throw new HttpException({
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: [ error.message ],
+            error: 'Bad Request',
+          }, HttpStatus.BAD_REQUEST);              
+        });
 
-          return response;
-        } catch (error) {
-          return {
-            code: error.code,
-            error: error.message
-          }
-        }
+      return response;
     }
 
     async update(person: UpdatePersonDto) {
-      try {
-        const personArray = await this.getById(person.id);
-        personArray.nome = person.nome === undefined ? personArray.nome : person.nome
-        personArray.cpf = person.cpf === undefined ? personArray.cpf : person.cpf
-        personArray.address = person.address === undefined ? personArray.address : person.address
-        this.personRepository.save(personArray);
-        return personArray;
-      } catch (error) {
-        return {
-          code: error.code,
-          error: error.message
-        }
-      }
+      const personArray = await this.getById(person.id);
+      
+      personArray.nome = person.nome === undefined ? personArray.nome : person.nome
+      personArray.cpf = person.cpf === undefined ? personArray.cpf : person.cpf
+      personArray.address = person.address === undefined ? personArray.address : person.address
+        
+      this.personRepository
+        .save(personArray)
+        .catch(error => {
+          throw new HttpException({
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: [ error.message ],
+            error: 'Bad Request',
+          }, HttpStatus.BAD_REQUEST);
+        });
+        
+      return personArray;
     }
 
     async delete(id: number) {
