@@ -13,12 +13,17 @@ export class PersonService {
     ) { }
 
     getAll() {
-        return this.personRepository.find();
+        return this.personRepository.find({
+          relations: ['address']
+        });
     }
 
     getById(id: number) {
-        const person = this.personRepository.findOne(id);
-        return person;
+      const person = this.personRepository.findOne(id, {
+        relations: ['address']  
+      });
+      
+      return person;
     }
 
     async create(person: CreatePersonDto) {
