@@ -5,21 +5,23 @@ export class PersonRegister {
   @ApiProperty({ type: String, description: 'nome', example: 'Rafael Levi' })
   nome: string;
 
-  @ApiProperty({ type: Number, description: 'cpf', example: 12345678912 })
+  @ApiProperty({ type: Number, description: 'cpf', example: "\"12345678912\"" })
   cpf: string;
 
   @ApiProperty({
     type: Address,
     description: 'Endereço',
-    example: {
-      "state": "Bahia",
-      "city": "Vitória da Conquista",
-      "neighborhood": "Felícia",
-      "street": "Rua I"
-    },
+    example: [
+      {
+        state: "Bahia",
+        city: "Vitória da Conquista",
+        neighborhood: "Felícia",
+        street: "Rua I"
+      }
+    ],
     required: true,
   })
-  Address: Address;
+  address: Address;
 }
 
 export class PersonList {
@@ -29,8 +31,23 @@ export class PersonList {
   @ApiProperty({ type: String, description: 'nome', example: 'Rafael Levi' })
   nome: string;
 
-  @ApiProperty({ type: Number, description: 'cpf', example: 12345678912 })
+  @ApiProperty({ type: Number, description: 'cpf', example: "\"12345678912\"" })
   cpf: string;
+
+  @ApiProperty({
+    type: Address,
+    description: 'endereço',
+    example: [
+      {
+        id: 1,
+        state: 'Bahia',
+        city: 'Vitória da Conquista',
+        neighborhood: 'Felícia',
+        street: 'Rua I'
+      }
+    ]
+  })
+  address: Address;
 }
 
 export class PersonUpdate {
@@ -45,7 +62,7 @@ export class PersonUpdate {
   @ApiProperty({
     type: Number,
     description: 'cpf',
-    example: 12345678912,
+    example: "\"12345678912\"",
     required: false,
   })
   cpf: string;
@@ -53,14 +70,16 @@ export class PersonUpdate {
   @ApiProperty({
     type: Address,
     description: 'Endereço',
-    example: {
-      "id": 1, 
-      "state": "Bahia",
-      "city": "Vitória da Conquista",
-      "neighborhood": "Felícia",
-      "street": "Rua I"
-    },
+    example: [
+      {
+        id: 1,
+        state: 'Bahia',
+        city: 'Vitória da Conquista',
+        neighborhood: 'Felícia',
+        street: 'Rua I'
+      }
+    ],
     required: false,
   })
-  Address: Address;
+  address: Address;
 }
