@@ -4,6 +4,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PersonRepository } from '../person.repository';
 import { CreatePersonDto } from "../dto/create-person.dto";
 import { UpdatePersonDto } from '../dto/update-person.dto'
+import { getConnection } from 'typeorm';
+import { Person } from 'src/entity/person.entity';
 
 @Injectable()
 export class PersonService {
@@ -63,7 +65,13 @@ export class PersonService {
     }
 
     async delete(id: number) {
-        const [person] = await this.personRepository.findByIds([id]);
-        this.personRepository.delete(person.id);
+      const [person] = await this.personRepository.findByIds([id]);
+
+      return await getConnection()
+        .createQueryBuilder()
+        .delete()
+        .from(Person)
+        .where("id = :id", { id: person.id })
+        .execute();
     }
 }
