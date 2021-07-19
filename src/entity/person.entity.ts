@@ -15,7 +15,5 @@ export class Person {
   cpf: string;
 
   @OneToMany(() => Address, address => address.person, { cascade: ['insert', 'update'] })
-  @ValidateNested() //to do: n precisava, apenas no class validator
-  @Type(() => Address) //to do: n precisava, apenas no class validator
   address: Address[];
 }

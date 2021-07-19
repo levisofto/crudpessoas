@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
-import { IsNotEmpty, Length, IsNumberString, IsString, IsArray, ValidateNested } from 'class-validator';
-import { Address } from '../../entity/address.entity'; //To do: criar um dto com os atributos para devolver e colocar os validadores
+import { IsNotEmpty, Length, IsNumberString, IsString, IsArray, ValidateNested, ArrayMinSize } from 'class-validator';
+import { CreateAddressDto } from './create-address.dto';
 export class CreatePersonDto {
   @IsNotEmpty()
   @IsString()
@@ -11,9 +11,10 @@ export class CreatePersonDto {
   @Length(11, 11)
 	cpf: string;
 
-  @IsNotEmpty() 
-  @IsArray() 
-  @Type(() => Address)
+  @IsNotEmpty()
+  @IsArray()
+  @ArrayMinSize(1)
+  @Type(() => CreateAddressDto)
   @ValidateNested({ each: true })
-  address: Address[];
+  address: CreateAddressDto[];
 }

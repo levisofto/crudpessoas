@@ -22,7 +22,5 @@ export class Address {
 
   @ManyToOne(() => Person)
   @JoinColumn()
-  @ValidateNested()//to do: n precisava, apenas no class validator
-  @Type(() => Person)//to do: n precisava, apenas no class validator
   person: Person;
 }
