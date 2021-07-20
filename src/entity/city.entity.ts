@@ -1,8 +1,8 @@
-import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Address } from './address.entity';
 
 @Entity('city')
-export class City {
+export class City extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 

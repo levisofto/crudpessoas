@@ -25,7 +25,7 @@ export class PeopleController {
       description: 'user list'
    })
    @ApiResponse({ type: [PersonList] })
-   async getAll(): Promise<ListPersonDto[]> {
+   async getAll() {
       return this.personService.getAll();
    }
 
@@ -45,7 +45,7 @@ export class PeopleController {
       description: 'user registration'
    })
    @ApiBody({ type: PersonRegister })
-   async create(@Body() person: CreatePersonDto): Promise<CreatePersonDto> {
+   async create(@Body() person: CreatePersonDto){
       return this.personService.create(person);
    }
 

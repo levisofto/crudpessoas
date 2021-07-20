@@ -1,10 +1,10 @@
 import { Type } from 'class-transformer';
 import { ValidateNested } from 'class-validator';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Address } from './address.entity';
 
 @Entity('person')
-export class Person {
+export class Person extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 

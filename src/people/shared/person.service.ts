@@ -15,9 +15,7 @@ export class PersonService {
     ) { }
 
     getAll() {
-        return this.personRepository.find({
-          relations: ['address']
-        });
+        return this.personRepository.list();
     }
 
     getById(id: number) {
@@ -28,7 +26,7 @@ export class PersonService {
       return person;
     }
 
-    async create(person: CreatePersonDto) {
+    async create(person: CreatePersonDto) { //to do: adicionar regra de negocio (fazer find nas cidades) para saber se a cidade existe (criar um city.service)
       const response = this.personRepository.create(person);
       
       await this.personRepository
@@ -66,7 +64,7 @@ export class PersonService {
 
     async delete(id: number) {
       const [person] = await this.personRepository.findByIds([id]);
-
+      
       await getConnection()
         .createQueryBuilder()
         .delete()
