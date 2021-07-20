@@ -67,11 +67,11 @@ export class PersonService {
     async delete(id: number) {
       const [person] = await this.personRepository.findByIds([id]);
 
-      return await getConnection()
+      await getConnection()
         .createQueryBuilder()
         .delete()
         .from(Person)
-        .where("id = :id", { id: person.id })
+        .where(person)
         .execute();
     }
 }
