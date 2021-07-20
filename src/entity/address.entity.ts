@@ -1,7 +1,6 @@
-import { Type } from 'class-transformer';
-import { ValidateNested } from 'class-validator';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Person } from './person.entity';
+import { City } from './city.entity';
 
 @Entity('address')
 export class Address {
@@ -11,8 +10,9 @@ export class Address {
   @Column()
   state: string;
 
-  @Column()
-  city: string;
+  @ManyToOne(() => City)
+  @JoinColumn()
+  city: City;
 
   @Column()
   neighborhood: string;

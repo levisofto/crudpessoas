@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsInt } from 'class-validator';
+import { City } from 'src/entity/city.entity';
 import { CreatePersonDto } from './create-person.dto';
 
 export class CreateAddressDto {
@@ -7,9 +8,9 @@ export class CreateAddressDto {
   @IsNotEmpty()
   state: string;
 
-  @IsString()
+  @IsInt()
   @IsNotEmpty()
-  city: string;
+  city: City;
 
   @IsString()
   @IsNotEmpty()
