@@ -1,6 +1,4 @@
 import { Address } from '../../entity/address.entity';
-import { plainToClass } from 'class-transformer';
-
 export class ListPersonDto {
   id: number;
   nome: string;
