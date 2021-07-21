@@ -5,6 +5,7 @@ import { PeopleModule } from './people/people.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import typeOrmConfig from './database/database.providers';
 import { ConfigModule } from '@nestjs/config';
+import 'reflect-metadata';
 
 @Module({
   imports: [

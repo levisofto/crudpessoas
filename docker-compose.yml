@@ -26,15 +26,6 @@ services:
       - app-network
     volumes:
       - ./.docker/pgdata:/var/lib/postgresql
-
-  xtree_mongo:
-    container_name: xtree_mongo
-    image: mongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
-    ports:
-      - 27017:27017
     networks:
       - app-network
 
