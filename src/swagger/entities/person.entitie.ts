@@ -14,7 +14,7 @@ export class PersonRegister {
     example: [
       {
         state: "Bahia",
-        city: "Vitória da Conquista",
+        cityId: 1,
         neighborhood: "Felícia",
         street: "Rua I"
       }
@@ -41,7 +41,7 @@ export class PersonList {
       {
         id: 1,
         state: 'Bahia',
-        city: 'Vitória da Conquista',
+        cityiD: 1,
         neighborhood: 'Felícia',
         street: 'Rua I'
       }
@@ -74,7 +74,7 @@ export class PersonUpdate {
       {
         id: 1,
         state: 'Bahia',
-        city: 'Vitória da Conquista',
+        cityId: 1,
         neighborhood: 'Felícia',
         street: 'Rua I'
       }
