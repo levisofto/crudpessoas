@@ -12,8 +12,8 @@ export class Address extends BaseEntity{
 
   @ManyToOne(() => City)
   @JoinColumn()
-  @Expose()
-  @Transform(value => value.value.name, { toPlainOnly: true })
+  @Expose({ name: 'city', toClassOnly: true })
+  @Transform(({ obj }) => obj.data.city.name, { toClassOnly: true })
   city: City;
 
   @Column()
