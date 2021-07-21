@@ -14,6 +14,7 @@ import { PersonRegister, PersonList, PersonUpdate } from '../swagger/entities/pe
 import { ListPersonDto } from './dto/list-user.dto';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
+import { ResponsePersonDto } from './dto/response-person.dto';
 
 @Controller('people')
 export class PeopleController {
@@ -26,7 +27,8 @@ export class PeopleController {
    })
    @ApiResponse({ type: [PersonList] })
    async getAll() {
-      return this.personService.getAll();
+      const persons = await this.personService.getAll();
+      return ResponsePersonDto.factory(persons);
    }
 
    @Get(':id')

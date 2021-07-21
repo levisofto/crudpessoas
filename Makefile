@@ -8,6 +8,9 @@ install:
 dev-server:
 	sudo docker exec -it xtree_app yarn start:dev
 
+debug:
+	sudo docker exec -it xtree_app yarn start:debug
+
 migration:
 	sudo docker exec -it xtree_app yarn migration
 
