@@ -11,9 +11,18 @@ constructor(
 
 @Command({ command: 'create:city', describe: 'create a city', autoExit: true })
 async create() {
-    const city = await this.CityService.create({
-        name: 'Salvador',
-    });
-    console.log(city);
+  const cities = [
+    { name: 'Salvador' },
+    { name: 'Vitória da Conquista' },
+    { name: 'Camaçari' },
+    { name: 'Ilhéus' },
+    { name: 'Porto Seguro' },
+  ]
+
+  for(let city of cities) {
+    const response = await this.CityService.create(city);
+
+    console.log(response);
+  }
 }
 }
