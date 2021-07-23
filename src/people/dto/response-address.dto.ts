@@ -1,4 +1,4 @@
-import { Exclude, Expose, Type } from 'class-transformer';
+import { Transform, Exclude, Expose, Type } from 'class-transformer';
 import { ResponseCityDto } from './response-city.dto';
 
 export class ResponseAddressDto {
@@ -10,9 +10,10 @@ export class ResponseAddressDto {
   state: string;
 
   @Expose()
-  @Type(()=>ResponseCityDto)
+  @Transform(({ value }) => value.name)
+  @Type(() => ResponseCityDto)
   city: ResponseCityDto;
-  
+
   @Expose()
   neighborhood: string;
   

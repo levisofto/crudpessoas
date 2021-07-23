@@ -18,8 +18,8 @@ export class ResponsePersonDto {
   
   static factory(person:any){
     const data = plainToClass(ResponsePersonDto, person);
-    return classToClass(data);
 
+    return data
   }
 
 }
