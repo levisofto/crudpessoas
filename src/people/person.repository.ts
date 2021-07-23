@@ -10,6 +10,14 @@ export class PersonRepository extends Repository<Person> {
         .leftJoinAndSelect("addresses.city", "city")
         .getMany()
     }
+
+    async listById(id: number) {
+      return this.createQueryBuilder("person")
+        .leftJoinAndSelect("person.address", "addresses")
+        .leftJoinAndSelect("addresses.city", "city")
+        .where('person.id = :id', { id })
+        .getOne()
+    }
        
  }
 

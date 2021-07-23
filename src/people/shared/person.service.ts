@@ -19,9 +19,7 @@ export class PersonService {
     }
 
     getById(id: number) {
-      const person = this.personRepository.findOne(id, {
-        relations: ['address']  
-      });
+      const person = this.personRepository.listById(id);
       
       return person;
     }
