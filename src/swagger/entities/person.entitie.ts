@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ListAddressDto } from 'src/people/dto/list-address.dto';
 import { Address } from '../../entity/address.entity';
 
 export class PersonRegister {
@@ -39,15 +40,14 @@ export class PersonList {
     description: 'endereço',
     example: [
       {
-        id: 1,
         state: 'Bahia',
-        cityiD: 1,
+        city: 'Salvador',
         neighborhood: 'Felícia',
         street: 'Rua I'
       }
     ]
   })
-  address: Address;
+  address: ListAddressDto;
 }
 
 export class PersonUpdate {
